@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Feedac-CoreRedux",
+        "repositoryURL": "/Users/mariusjcb/Documents/Developer/Feedac-CoreRedux",
+        "state": {
+          "branch": null,
+          "revision": "472616426e809da7774ea3db1c970a7113ab73bb",
+          "version": "1.0.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
