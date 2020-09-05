@@ -7,29 +7,27 @@ final class Feedac_UIReduxTests_iOS: XCTestCase {
     private let sutStore = Store<SutState>(SutState(), using: SutReducer)
     
     func testSutView() {
-        func testViewProps() {
-            let view = ReduxStoreUIContainer(sutStore) {
-                SutView()
-            }
-            sutStore.dispatch(action: SutIncrementAction())
+        let view = ReduxStoreUIContainer(sutStore) {
+            SutView()
+        }
+        sutStore.dispatch(action: SutIncrementAction())
+        
+        DispatchQueue.main.async {
+            var dataModel = view
+                .content()
+                .map(self.sutStore.state,
+                     dispatch: self.sutStore.dispatch(action:))
+            XCTAssert(dataModel.count == 1, "Invalid dataModel count")
+            dataModel.onIncrementCount()
             
             DispatchQueue.main.async {
-                var dataModel = view
+                dataModel = view
                     .content()
                     .map(self.sutStore.state,
                          dispatch: self.sutStore.dispatch(action:))
-                XCTAssert(dataModel.count == 1, "Invalid dataModel count")
-                dataModel.onIncrementCount()
-                
-                DispatchQueue.main.async {
-                    dataModel = view
-                        .content()
-                        .map(self.sutStore.state,
-                             dispatch: self.sutStore.dispatch(action:))
-                    XCTAssert(dataModel.count == 2, "Invalid dataModel count after increment")
-                }
-                
+                XCTAssert(dataModel.count == 2, "Invalid dataModel count after increment")
             }
+            
         }
     }
 
