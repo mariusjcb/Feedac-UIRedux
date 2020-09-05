@@ -17,7 +17,7 @@ let package = Package(
             targets: ["Feedac-UIRedux"]),
     ],
     dependencies: [
-        .package(url: "../Feedac-CoreRedux", from: "1.0.1")
+        .package(url: "https://github.com/mariusjcb/Feedac-CoreRedux.git", from: "1.0.1")
     ],
     targets: [
         .target(
